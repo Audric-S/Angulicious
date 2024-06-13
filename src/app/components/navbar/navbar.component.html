@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <div class="nav-div">
+        <ng-container *ngFor="let link of link_list">
+            <app-navlink [link]="link.link" [label]="link.label"></app-navlink>
+          </ng-container>
+    </div>
+  </mat-toolbar>
+  
