@@ -1,0 +1,25 @@
+.mat-toolbar {
+  background-color: #3f51b5; /* Couleur de fond de la toolbar */
+  color: white; /* Couleur du texte */
+  justify-content: flex-start; /* Alignement à gauche */
+  padding-left: 16px; /* Espacement à gauche */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.link-nav {
+  text-decoration: none;
+  color: white; /* Couleur des liens */
+  font-size: 16px;
+}
+
+.link-nav:hover {
+  text-decoration: underline; /* Soulignement au survol */
+}
+
+.nav-div{
+  display: flex;
+  justify-content: flex-start;
+}
