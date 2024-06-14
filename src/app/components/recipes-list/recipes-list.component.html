@@ -1,0 +1,21 @@
+<mat-card class="recipes-list-card">
+  <mat-card-header class="top-header">
+    <div mat-card-avatar></div>
+    <mat-card-title>Recipes List</mat-card-title>
+    <button mat-icon-button class="add-button" (click)="addRecipe()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngFor="let recipe of paginatedRecipes">
+      <app-recipe-preview [imageUrl]="recipe.imageUrl" [name]="recipe.name" [description]="recipe.description"></app-recipe-preview>
+    </ng-container>
+  </mat-card-content>
+  <mat-paginator [length]="recipes.length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[2, 5, 10, 15, 100]"
+                 aria-label="Select page"
+                 showFirstLastButtons
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</mat-card>
