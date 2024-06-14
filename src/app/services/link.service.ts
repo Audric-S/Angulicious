@@ -8,7 +8,6 @@ export class LinkService {
 
     constructor(){
         this.links = LINKS;
-
     }
 
     getAll(): Link[]{
