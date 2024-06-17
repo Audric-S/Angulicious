@@ -1,4 +1,10 @@
-<app-recipe-form></app-recipe-form>
 <app-navbar></app-navbar>
 
-<app-recipes-list></app-recipes-list>
+<div class="container">
+  <div class="sidebar">
+    <app-recipes-list (EventaddRecipe)="toggleForm()"></app-recipes-list>
+  </div>
+  <div class="content" *ngIf="showForm">
+    <app-recipe-form></app-recipe-form>
+  </div>
+</div>

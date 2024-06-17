@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
   imports: [RouterOutlet, 
     RecipesListComponent,
     NavbarComponent,
-    RecipeFormComponent
+    RecipeFormComponent ,
+    CommonModule
   ],
 
   templateUrl: './app.component.html',
@@ -18,4 +20,10 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 })
 export class AppComponent {
   title = 'Angulicious';
+
+  showForm = false;
+
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
 }
