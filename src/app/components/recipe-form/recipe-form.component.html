@@ -1,1 +1,17 @@
-<p>recipe-form works!</p>
+<form [formGroup]="recipeForm" (ngSubmit)="addRecipe()" class="form-container">
+  <mat-form-field class="full-width">
+    <mat-label>Nom de la recette</mat-label>
+    <input matInput type="text" formControlName="nom" required>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>URL de l'image</mat-label>
+    <input matInput type="text" formControlName="image">
+  </mat-form-field>
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit">Add Recipe</button>
+  </div>
+</form>
