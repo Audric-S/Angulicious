@@ -24,7 +24,7 @@ export class LocalService {
   }
 
   public getParsedRecipes(key: string) {
-    let items =  localStorage.getItem(key)
+    let items =  this.getData(key)
       if (items) {
         return JSON.parse(items) as Recipe[];
       } 
@@ -33,6 +33,6 @@ export class LocalService {
 
   public saveRecipeData(key: string, value: Recipe) {
     const recipeJSON = JSON.stringify(value);
-    localStorage.setItem(key, recipeJSON);
+    this.saveData(key, recipeJSON);
   }
 }
