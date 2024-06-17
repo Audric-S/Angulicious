@@ -1,7 +1,7 @@
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule} from '@angular/material/paginator';
 import { RecipePreviewComponent } from '../recipe-preview/recipe-preview.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Component, OnInit, ViewChild } from '@angular/core';
