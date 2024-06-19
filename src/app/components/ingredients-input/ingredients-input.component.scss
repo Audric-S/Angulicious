@@ -1,0 +1,21 @@
+.div-ing{
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+}
+
+.delete-button-container{
+    align-self: center;
+}
+
+.delete-button{
+    border: none;
+    background-color: transparent;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.delete-button:hover{
+    color: red;
+    transition: 0.2s;
+}
