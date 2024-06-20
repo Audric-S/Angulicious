@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <img src="../../../assets/burger-logo.png" class="logo-nav">
+    <img src="../../../assets/burger-logo.png" class="logo-nav" (click)="redirectToHome()">
     <div class="nav-div">
         <ng-container *ngFor="let link of link_list">
             <app-navlink [link]="link.link" [label]="link.label"></app-navlink>
