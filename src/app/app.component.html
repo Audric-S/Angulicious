@@ -5,6 +5,6 @@
     <app-recipes-list (EventaddRecipe)="toggleForm()"></app-recipes-list>
   </div>
   <div class="content" *ngIf="showForm">
-    <app-recipe-form></app-recipe-form>
+    <app-recipe-form (addRecipeEvent)="addRecipe($event)"></app-recipe-form>
   </div>
 </div>

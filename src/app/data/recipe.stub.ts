@@ -4,7 +4,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 1,
     imageUrl:
-      'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
+      '../../assets/burger.gif',
     name: 'Product 1',
     description: 'Description of product 1. It can be more than 50 characters.',
     ingredients: [],
@@ -12,7 +12,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 2,
     imageUrl:
-      'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
+      '../../assets/the-only-way-to-eat-a-burger.gif',
     name: 'Product 2',
     description: 'Description of product 2. It can be more than 50 characters.',
     ingredients: [],

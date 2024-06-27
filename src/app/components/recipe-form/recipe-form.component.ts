@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
+import { Recipe } from '../../models/recipe.model';
 
 @Component({
   selector: 'app-recipe-form',
@@ -12,18 +13,18 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './recipe-form.component.scss'
 })
 export class RecipeFormComponent {
-  recipeForm: FormGroup;
+  @Output() addRecipeEvent = new EventEmitter<Recipe>();
 
-  constructor(private _form_builder: FormBuilder) {
-    this.recipeForm = this._form_builder.group({
-      name: ['', Validators.required],
-      description: [''],
-      image: ['']
-    });
-  }
+  newRecipe: Recipe = { id: 0, name: '', imageUrl:'', description: '', ingredients: [] }
+
+  recipeForm: FormGroup = new FormGroup({
+    name: new FormControl(this.newRecipe.name, Validators.required),
+    description: new FormControl(this.newRecipe.description, Validators.required),
+  });
 
   addRecipe() {
-    console.log(this.recipeForm.value);
+    this.newRecipe = this.recipeForm.value;
+    this.addRecipeEvent.emit(this.newRecipe);
     this.recipeForm.reset();
   }
 }
