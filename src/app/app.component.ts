@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { IngredientsInputComponent } from './components/ingredients-input/ingredients-input.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,9 @@ import { IngredientsInputComponent } from './components/ingredients-input/ingred
     NavbarComponent,
     IngredientsInputComponent
   ],
-
+  providers: [
+    AuthService
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

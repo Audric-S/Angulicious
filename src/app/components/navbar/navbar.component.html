@@ -1,9 +1,11 @@
 <mat-toolbar color="primary">
     <img src="../../../assets/burger-logo.png" class="logo-nav" (click)="redirectToHome()">
     <div class="nav-div">
-        <ng-container *ngFor="let link of link_list">
-            <app-navlink [link]="link.link" [label]="link.label"></app-navlink>
-          </ng-container>
+      <span *ngIf="!isAdmin; else logoutTemplate" (click)="login()" class="link-nav">Login</span>
+      <ng-template #logoutTemplate>
+        <span (click)="logout()" class="link-nav">Logout</span>
+      </ng-template>
+      <a href="ingredients" class="link-nav">Ingredients</a>
     </div>
   </mat-toolbar>
   

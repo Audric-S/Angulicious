@@ -1,38 +1,56 @@
-import { Component } from '@angular/core';
-import { NavlinkComponent } from '../navlink/navlink.component';
+import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { Link } from '../../models/link.model';
-import { LinkService } from '../../services/link.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    NavlinkComponent,
     CommonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   providers: [
-    LinkService,
+    AuthService,
   ]
 })
-export class NavbarComponent {
-  link_list: Link[] = [];
+export class NavbarComponent implements OnInit {
+
+  public isAdmin: boolean | undefined;
 
   constructor(
-    protected linkService: LinkService,
-    private routeService: Router
+    private readonly _authService: AuthService,
+    private readonly routeService: Router
   ){}
 
-  ngOnInit(){
-    this.link_list = this.linkService.getAll();
+  public ngOnInit(): void {
+    this.onAdminStatusChange();
   }
 
+  private onAdminStatusChange(): void {
+    this._authService.onAuthStatusChange.subscribe({
+      next: (status) => {
+        this.isAdmin = status === true ? true : false;
+      }
+    });
+  }
+
+
   redirectToHome(): void{
+    this.routeService.navigateByUrl("/home");
+  }
+
+  public login(): void {
+    this._authService.login();
+    this.routeService.navigateByUrl("/ingredients");
+  }
+
+  public logout(): void {
+    this._authService.logout();
     this.routeService.navigateByUrl("/home");
   }
 }
