@@ -5,8 +5,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { IngredientsService } from '../../services/ingredients.service';
 import { Ingredient } from '../../models/ingredient.model';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { IngredientRecipe } from '../../models/ingredient-recipe.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ingredients-input',
@@ -18,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   templateUrl: './ingredients-input.component.html',
   styleUrl: './ingredients-input.component.scss',
@@ -28,24 +31,28 @@ import { MatIconModule } from '@angular/material/icon';
 })
 
 export class IngredientsInputComponent {
-
-  @Output() ingredientDeleted = new EventEmitter<void>();
-
+  @Output() addIngredientEvent = new EventEmitter<IngredientRecipe>();
+  options: Ingredient[] = [];
+  
   constructor(
     protected ingredientService: IngredientsService,
   ){}
 
-  options: Ingredient[] = [];
-  selected = '';
-  disableRemove: boolean = false;
-  quantity: number = 0;
+  newIngredient: IngredientRecipe = { id: 0, ingredient: {id: 0, name: ''}, quantity: 7 }
+
+  ingredientForm: FormGroup = new FormGroup({
+    quantity: new FormControl(this.newIngredient.quantity, Validators.required),
+    ingredient: new FormControl(this.newIngredient.ingredient, Validators.required),
+  });
 
 
   ngOnInit(){
     this.options = this.ingredientService.getAll();
   }
   
-  deleteIngredient():void{
-    this.ingredientDeleted.emit();
+  addIngredient(): void{
+    this.newIngredient = this.ingredientForm.value;
+    this.addIngredientEvent.emit(this.newIngredient);
+    this.ingredientForm.reset();
   }
 }

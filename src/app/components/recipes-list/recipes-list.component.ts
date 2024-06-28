@@ -52,7 +52,7 @@ export class RecipesListComponent implements OnInit {
       //this.localService.saveData("recipes", recipesJSON);
       this.recipes = this.localService.getParsedRecipes("recipes");
       this.updatePaginatedRecipes();
-  }
+      }
 
   updatePaginatedRecipes() {
     const startIndex = this.currentPage * this.pageSize;
