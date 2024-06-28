@@ -16,6 +16,11 @@
   <div class="add-ingredient">
     <app-ingredients-input (addIngredientEvent)="addIngredient($event)"></app-ingredients-input>
   </div>
+  <div class="ingredients">
+    <div *ngFor="let ingredient of ingredientsRecipe">
+      <p>{{ ingredient.quantity }}</p>
+    </div>
+  </div>
   <div class="form-field">
     <input type="file" id="avatar-input-file" accept="image/*"/>
   </div>

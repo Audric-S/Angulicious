@@ -6,16 +6,18 @@ import { MatIcon } from '@angular/material/icon';
 import { Recipe } from '../../models/recipe.model';
 import { IngredientsInputComponent } from '../ingredients-input/ingredients-input.component';
 import { IngredientRecipe } from '../../models/ingredient-recipe.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
-  imports: [ ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIcon, IngredientsInputComponent],
+  imports: [ ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatIcon, IngredientsInputComponent, CommonModule],
   templateUrl: './recipe-form.component.html',
   styleUrl: './recipe-form.component.scss'
 })
 export class RecipeFormComponent {
   @Output() addRecipeEvent = new EventEmitter<Recipe>();
+  ingredientsRecipe: IngredientRecipe[] = []
 
   newRecipe: Recipe = { id: 0, name: '', imageUrl:'', description: '', ingredients: [] }
 
@@ -31,7 +33,7 @@ export class RecipeFormComponent {
   }
 
   addIngredient($event: IngredientRecipe){
-    console.log($event);
+   this.ingredientsRecipe.push($event);
   }
 }
 
