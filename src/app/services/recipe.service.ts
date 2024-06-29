@@ -11,11 +11,11 @@ export class RecipeService {
   constructor(){
     this.recipes = RECIPES;
 
-}
+  }
 
-getAll(): Recipe[]{
-    return this.recipes;
-}
+  getAll(): Recipe[]{
+      return this.recipes;
+  }
 
   addData(item: any): void {
     this.recipes.push(item);

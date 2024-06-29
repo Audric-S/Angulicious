@@ -6,6 +6,7 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { CommonModule } from '@angular/common';
 import { Recipe } from './models/recipe.model';
 import { LocalService } from './services/local.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,9 @@ import { LocalService } from './services/local.service';
     CommonModule,
     RecipeFormComponent
   ],
-
+  providers: [
+    AuthService
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -37,7 +40,6 @@ export class AppComponent {
 
   addRecipe($event: Recipe): void {
     console.log($event)
-    this.localService.saveRecipeData('recipes', $event)
     this.toggleForm();
   }
 }

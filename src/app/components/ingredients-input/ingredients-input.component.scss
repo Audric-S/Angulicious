@@ -4,18 +4,29 @@
     gap: 2%;
 }
 
-.delete-button-container{
+.add-button-container{
     align-self: center;
+    max-height: 24px;
 }
 
-.delete-button{
+.add-button{
     border: none;
     background-color: transparent;
     transition: 0.2s;
     cursor: pointer;
 }
 
-.delete-button:hover{
-    color: red;
+.add-button:hover{
+    background-color: green;
     transition: 0.2s;
+    color: white;
+}
+
+.add-button{
+    border-radius: 100%;
+}
+
+button{
+    padding: 0;
+    max-height: 24px;
 }

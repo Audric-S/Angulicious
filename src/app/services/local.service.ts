@@ -13,8 +13,9 @@ export class LocalService {
   }
 
   public getData(key: string) {
-    return localStorage.getItem(key)
+    return localStorage.getItem(key);
   }
+
   public removeData(key: string) {
     localStorage.removeItem(key);
   }
@@ -24,15 +25,21 @@ export class LocalService {
   }
 
   public getParsedRecipes(key: string) {
-    let items =  this.getData(key)
+    let items = this.getData(key);
     if (items) {
       return JSON.parse(items) as Recipe[];
     } 
     return [];
   }
 
-  public saveRecipeData(key: string, value: Recipe) {
-    const recipeJSON = JSON.stringify(value);
-    this.saveData(key, recipeJSON);
+  public saveRecipeData(key: string, recipes: Recipe[]) {
+    const recipesJSON = JSON.stringify(recipes);
+    this.saveData(key, recipesJSON);
+  }
+
+  public addRecipe(key: string, recipe: Recipe) {
+    let recipes = this.getParsedRecipes(key);
+    recipes.push(recipe);
+    this.saveRecipeData(key, recipes);
   }
 }

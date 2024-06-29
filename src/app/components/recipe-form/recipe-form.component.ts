@@ -10,6 +10,7 @@ import { IngredientRecipe } from '../../models/ingredient-recipe.model';
 import { IngredientsInputComponent } from '../ingredients-input/ingredients-input.component';
 import { CommonModule } from '@angular/common';
 import * as uuid from 'uuid';
+import { LocalService } from '../../services/local.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -42,7 +43,9 @@ export class RecipeFormComponent {
     id: new FormControl(this.idForNewRecipe)
   });
 
-
+  constructor(
+    protected localService: LocalService
+  ){}
 
   addRecipe() {
     this.newRecipe = {
@@ -53,6 +56,7 @@ export class RecipeFormComponent {
     this.recipeForm.reset();
     this.ingredientsRecipe = [];
     this.dataSource.data = this.ingredientsRecipe;
+    this.localService.addRecipe('recipes', this.newRecipe)
   }
 
   addIngredient(event: IngredientRecipe) {

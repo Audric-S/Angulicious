@@ -1,10 +1,11 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<router-outlet></router-outlet>
+<!-- <div class="container">
   <div class="sidebar">
     <app-recipes-list (EventaddRecipe)="toggleForm()"></app-recipes-list>
   </div>
   <div class="content" *ngIf="showForm">
     <app-recipe-form (addRecipeEvent)="addRecipe($event)"></app-recipe-form>
   </div>
-</div>
+</div> -->

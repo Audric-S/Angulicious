@@ -47,27 +47,36 @@ export class RecipesListComponent implements OnInit {
   ){}
 
   ngOnInit(){
-      //this.recipes = this.recipeService.getAll();
-      //const recipesJSON = JSON.stringify(this.recipes);
-      //this.localService.saveData("recipes", recipesJSON);
-      this.recipes = this.localService.getParsedRecipes("recipes");
-      console.log(this.recipes)
-      this.updatePaginatedRecipes();
+      this.initRecipes();
+      this.displayRecipes();
   }
 
-  updatePaginatedRecipes() {
+  initRecipes(): void{
+    if (!this.localService.getData('recipes')) {
+      this.recipes = this.recipeService.getAll();
+      const recipesJSON = JSON.stringify(this.recipes);
+      this.localService.saveData("recipes", recipesJSON);
+    }
+  }
+
+  displayRecipes(): void{
+    this.recipes = this.localService.getParsedRecipes("recipes");
+    this.updatePaginatedRecipes();
+  }
+
+  updatePaginatedRecipes(): void {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedRecipes = this.recipes.slice(startIndex, endIndex);
   }
 
-  onPageChange(event: PageEvent) {
+  onPageChange(event: PageEvent): void {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.updatePaginatedRecipes();
   }
 
-  addRecipe() {
+  addRecipe(): void {
     this.EventaddRecipe.emit();
   }
 
