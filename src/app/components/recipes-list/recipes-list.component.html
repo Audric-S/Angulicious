@@ -8,7 +8,10 @@
   </mat-card-header>
   <mat-card-content>
     <ng-container *ngFor="let recipe of paginatedRecipes">
-      <app-recipe-preview [imageUrl]="recipe.imageUrl" [name]="recipe.name" [description]="recipe.description"></app-recipe-preview>
+      <app-recipe-preview
+        [recipe]="recipe"
+        (orderClicked)="onOrderClicked($event)"
+      ></app-recipe-preview>
     </ng-container>
   </mat-card-content>
   <mat-paginator [length]="recipes.length"
@@ -19,4 +22,5 @@
                  (page)="onPageChange($event)">
   </mat-paginator>
 </mat-card>
+
 

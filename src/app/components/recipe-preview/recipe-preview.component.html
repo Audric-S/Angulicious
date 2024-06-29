@@ -1,8 +1,11 @@
 <div class="product">
-    <img [src]="imageUrl" alt="Product Image" class="product-image">
-    <div class="product-details">
-      <h2>{{ name }}</h2>
-      <p>{{ description.length > 50 ? (description | slice :0:50) + '...' : description}}</p>
+  <img [src]="recipe?.imageUrl" alt="Product Image" class="product-image">
+  <div class="product-details">
+    <h2>{{ recipe?.name }}</h2>
+    <p>{{ recipe?.description }}</p>
+    <div class="btn">
       <a mat-flat-button href="https://www.google.com/" target="_blank" color="primary">Details</a>
+      <a mat-flat-button color="primary" (click)="addToCart()">Commander</a>
     </div>
+  </div>
 </div>

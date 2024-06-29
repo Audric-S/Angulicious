@@ -1,6 +1,6 @@
 <div class="container">
     <div class="sidebar">
-      <app-recipes-list (EventaddRecipe)="toggleForm()" [events]="eventsSubject.asObservable()"></app-recipes-list>
+      <app-recipes-list (EventaddRecipe)="toggleForm()"  (EventaddRecipeToCart)="addToCart($event)" [events]="eventsSubject.asObservable()"></app-recipes-list>
     </div>
     <div class="content" *ngIf="showForm">
       <app-recipe-form (addRecipeEvent)="addRecipe()"></app-recipe-form>

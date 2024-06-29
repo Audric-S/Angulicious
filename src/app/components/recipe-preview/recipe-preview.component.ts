@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { Recipe } from '../../models/recipe.model';
 
 @Component({
   selector: 'app-recipe-preview',
@@ -13,7 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './recipe-preview.component.scss'
 })
 export class RecipePreviewComponent {
-  @Input() imageUrl: string | undefined;
-  @Input() name: string | undefined;
-  @Input() description: string = "";
+  @Input() recipe: Recipe | undefined;
+  @Output() orderClicked: EventEmitter<Recipe> = new EventEmitter<Recipe>();
+
+  addToCart() {
+    if (this.recipe) {
+      this.orderClicked.emit(this.recipe);
+    }
+  }
 }

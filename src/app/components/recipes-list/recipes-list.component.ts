@@ -27,6 +27,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class RecipesListComponent implements OnInit {
   @Output() EventaddRecipe = new EventEmitter<void>();
+  @Output() EventaddRecipeToCart: EventEmitter<Recipe> = new EventEmitter<Recipe>();
 
   recipes: Recipe[] = [];
   pageSize = 2;
@@ -85,5 +86,9 @@ export class RecipesListComponent implements OnInit {
 
   addRecipe(): void {
     this.EventaddRecipe.emit();
+  }
+
+  onOrderClicked(recipe: Recipe) {
+    this.EventaddRecipeToCart.emit(recipe)
   }
 }
