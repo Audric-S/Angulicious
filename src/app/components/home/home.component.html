@@ -1,8 +1,24 @@
 <div class="container">
+    <mat-icon>shopping_cart</mat-icon>
+    <span>{{ itemCount }} items</span>
     <div class="sidebar">
-      <app-recipes-list (EventaddRecipe)="toggleForm()"  (EventaddRecipeToCart)="addToCart($event)" [events]="eventsSubject.asObservable()"></app-recipes-list>
+      <app-recipes-list 
+        (EventaddRecipe)="toggleForm()"
+        (EventaddRecipeToCart)="addToCart($event)" 
+        [events]="eventsSubject.asObservable()"
+      ></app-recipes-list>
     </div>
     <div class="content" *ngIf="showForm">
       <app-recipe-form (addRecipeEvent)="addRecipe()"></app-recipe-form>
     </div>
+    
+    <div class="selected-recipes">
+      <h2>Selected Recipes</h2>
+      <ul>
+        <li *ngFor="let recipe of currentRecipeOrder">
+          {{ recipe.name }} - {{ recipe.description }}
+        </li>
+      </ul>
+    </div>
   </div>
+  
