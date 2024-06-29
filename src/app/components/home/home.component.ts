@@ -40,6 +40,8 @@ export class HomeComponent {
     this.emitEventToChild();
   }
 
+  
+
   get itemCount(): number {
     return this.currentRecipeOrder.length;
   }
