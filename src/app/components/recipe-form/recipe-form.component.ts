@@ -52,11 +52,12 @@ export class RecipeFormComponent {
       ...this.recipeForm.value,
       ingredients: this.ingredientsRecipe
     };
+    this.localService.addRecipe('recipes', this.newRecipe)
+
     this.addRecipeEvent.emit(this.newRecipe);
     this.recipeForm.reset();
     this.ingredientsRecipe = [];
     this.dataSource.data = this.ingredientsRecipe;
-    this.localService.addRecipe('recipes', this.newRecipe)
   }
 
   addIngredient(event: IngredientRecipe) {
