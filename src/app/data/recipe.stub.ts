@@ -2,7 +2,7 @@ import { Recipe } from '../models/recipe.model';
 
 export const RECIPES: Recipe[] = [
   {
-    id: 1,
+    id: '1',
     imageUrl:
       '../../assets/burger.gif',
     name: 'Product 1',
@@ -10,7 +10,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 2,
+    id: '2',
     imageUrl:
       '../../assets/the-only-way-to-eat-a-burger.gif',
     name: 'Product 2',
@@ -18,7 +18,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 3,
+    id: '3',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 3',
@@ -26,7 +26,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 4,
+    id: '4',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 4',
@@ -34,7 +34,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 5,
+    id: '5',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 5',
@@ -42,7 +42,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 6,
+    id: '6',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 6',
@@ -50,7 +50,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 7,
+    id: '7',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 7',
@@ -58,7 +58,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 8,
+    id: '8',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 8',
@@ -66,7 +66,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 9,
+    id: '9',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 9',
@@ -74,7 +74,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 10,
+    id: '10',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 10',
@@ -83,7 +83,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 11,
+    id: '11',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 11',
@@ -92,7 +92,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 12,
+    id: '12',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 12',
@@ -101,7 +101,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 13,
+    id: '13',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 13',
@@ -110,7 +110,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 14,
+    id: '14',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 14',
@@ -119,7 +119,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 15,
+    id: '15',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 15',
@@ -128,7 +128,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 16,
+    id: '16',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 16',
@@ -137,7 +137,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 17,
+    id: '17',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 17',
@@ -146,7 +146,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 18,
+    id: '18',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 18',
@@ -155,7 +155,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 19,
+    id: '19',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 19',
@@ -164,7 +164,7 @@ export const RECIPES: Recipe[] = [
     ingredients: [],
   },
   {
-    id: 20,
+    id: '20',
     imageUrl:
       'https://www.biofournil.com/wp-content/uploads/2021/02/BRIOCHE-BIOFOURNIL_web.jpg',
     name: 'Product 20',

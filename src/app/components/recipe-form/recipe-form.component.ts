@@ -9,6 +9,7 @@ import { Recipe } from '../../models/recipe.model';
 import { IngredientRecipe } from '../../models/ingredient-recipe.model';
 import { IngredientsInputComponent } from '../ingredients-input/ingredients-input.component';
 import { CommonModule } from '@angular/common';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-recipe-form',
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
     MatTableModule,
     MatButtonModule,
     IngredientsInputComponent,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.scss']
@@ -31,13 +32,17 @@ export class RecipeFormComponent {
   ingredientsRecipe: IngredientRecipe[] = [];
   displayedColumns: string[] = ['name', 'quantity', 'actions'];
   dataSource: MatTableDataSource<IngredientRecipe> = new MatTableDataSource<IngredientRecipe>();
+  idForNewRecipe: string = uuid.v4();
 
-  newRecipe: Recipe = { id: 0, name: '', imageUrl: '', description: '', ingredients: [] };
+  newRecipe: Recipe = { id: '', name: '', imageUrl: '', description: '', ingredients: [] };
 
   recipeForm: FormGroup = new FormGroup({
     name: new FormControl(this.newRecipe.name, Validators.required),
     description: new FormControl(this.newRecipe.description, Validators.required),
+    id: new FormControl(this.idForNewRecipe)
   });
+
+
 
   addRecipe() {
     this.newRecipe = {

@@ -25,10 +25,10 @@ export class LocalService {
 
   public getParsedRecipes(key: string) {
     let items =  this.getData(key)
-      if (items) {
-        return JSON.parse(items) as Recipe[];
-      } 
-      return [];
+    if (items) {
+      return JSON.parse(items) as Recipe[];
+    } 
+    return [];
   }
 
   public saveRecipeData(key: string, value: Recipe) {

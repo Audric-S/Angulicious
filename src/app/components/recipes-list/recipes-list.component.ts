@@ -51,8 +51,9 @@ export class RecipesListComponent implements OnInit {
       //const recipesJSON = JSON.stringify(this.recipes);
       //this.localService.saveData("recipes", recipesJSON);
       this.recipes = this.localService.getParsedRecipes("recipes");
+      console.log(this.recipes)
       this.updatePaginatedRecipes();
-      }
+  }
 
   updatePaginatedRecipes() {
     const startIndex = this.currentPage * this.pageSize;
