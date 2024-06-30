@@ -10,7 +10,6 @@ export class RecipeService {
 
   constructor(){
     this.recipes = RECIPES;
-
   }
 
   getAll(): Recipe[]{

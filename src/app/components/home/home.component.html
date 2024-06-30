@@ -10,7 +10,7 @@
       <app-recipe-form (addRecipeEvent)="addRecipe()"></app-recipe-form>
     </div>
     
-    <div class="selected-recipes" *ngIf="!showForm">
+    <div class="selected-recipes" *ngIf="!showForm && currentRecipeOrder.length > 0">
     <mat-icon>shopping_cart</mat-icon>
     <div class="cart">
       <h3>My order :</h3>

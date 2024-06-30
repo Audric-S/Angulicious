@@ -37,3 +37,10 @@
   button:hover {
     background-color: #d32f2f;
   }
+
+  .selected-recipes{
+    border-radius: 5%;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 3%;
+    padding: 1%;
+  }

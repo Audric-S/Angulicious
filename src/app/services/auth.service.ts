@@ -1,35 +1,32 @@
 import { Injectable } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable()
 export class AuthService {
-
-    public onAuthStatusChange: Subject<boolean> = new Subject<boolean>();
+    private _isAdminSubject: BehaviorSubject<boolean>;
 
     constructor(
         private readonly _cookieService: CookieService,
-    )
-    {
-        this.isAdminCookie = this.isAdmin();
+    ) {
+        this._isAdminSubject = new BehaviorSubject<boolean>(this.isAdmin());
     }
 
-    public isAdminCookie: boolean = false;
+    public get onAuthStatusChange(): Observable<boolean> {
+        return this._isAdminSubject.asObservable();
+    }
 
-
-    logout(): void{
+    logout(): void {
         this._cookieService.delete('isAdmin');
-        this.onAuthStatusChange.next(false);
-        // this.isAdminCookie = this.isAdmin();
+        this._isAdminSubject.next(false);
     }
 
-    login(): void{
+    login(): void {
         this._cookieService.set('isAdmin', 'true');
-        this.onAuthStatusChange.next(true);
-        // this.isAdminCookie = this.isAdmin();
+        this._isAdminSubject.next(true);
     }
 
-    isAdmin(): boolean{
+    isAdmin(): boolean {
         return this._cookieService.get('isAdmin') === 'true';
     }
 }
