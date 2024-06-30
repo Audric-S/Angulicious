@@ -24,12 +24,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   templateUrl: './ingredients-input.component.html',
-  styleUrl: './ingredients-input.component.scss',
+  styleUrls: ['./ingredients-input.component.scss'],
   providers: [
     IngredientsService
   ]
 })
-
 export class IngredientsInputComponent {
   @Output() addIngredientEvent = new EventEmitter<IngredientRecipe>();
   options: Ingredient[] = [];
@@ -41,18 +40,19 @@ export class IngredientsInputComponent {
   newIngredient: IngredientRecipe = { id: 0, ingredient: {id: 0, name: '', description:''}, quantity: 0 }
 
   ingredientForm: FormGroup = new FormGroup({
-    quantity: new FormControl(this.newIngredient.quantity, Validators.required),
+    quantity: new FormControl(this.newIngredient.quantity, [Validators.required, Validators.min(1)]),
     ingredient: new FormControl(this.newIngredient.ingredient, Validators.required),
   });
-
 
   ngOnInit(){
     this.options = this.ingredientService.getAll();
   }
   
   addIngredient(): void{
-    this.newIngredient = this.ingredientForm.value;
-    this.addIngredientEvent.emit(this.newIngredient);
-    this.ingredientForm.reset();
+    if (this.ingredientForm.valid) {
+      this.newIngredient = this.ingredientForm.value;
+      this.addIngredientEvent.emit(this.newIngredient);
+      this.ingredientForm.reset();
+    }
   }
 }
