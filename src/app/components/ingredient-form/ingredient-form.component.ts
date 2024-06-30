@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IngredientsService } from '../../services/ingredients.service';
 import { Ingredient } from '../../models/ingredient.model';
@@ -27,7 +27,8 @@ import { IngredientsInputComponent } from '../ingredients-input/ingredients-inpu
   styleUrl: './ingredient-form.component.scss'
 })
 export class IngredientFormComponent {
-  newIngredient: Ingredient = {id: 0, name:'', description: ''}
+  newIngredient: Ingredient = {id: 0, name:'', description: ''};
+  @Output() newIngredientEvent = new EventEmitter<Ingredient>();
   ingredientForm: FormGroup = new FormGroup(
     {
       name: new FormControl(this.newIngredient.name, Validators.required),
@@ -55,6 +56,7 @@ export class IngredientFormComponent {
       this.ingredientsService.addIngredient(newIngredient).subscribe(
         (ingredient) => {
           console.log('Ingrédient ajouté avec succès :', ingredient);
+          this.newIngredientEvent.emit(ingredient);
           this.ingredientForm.reset();
         },
         (error) => {

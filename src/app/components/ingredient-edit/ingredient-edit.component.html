@@ -1,0 +1,23 @@
+<form [formGroup]="editForm" (ngSubmit)="saveIngredient()" class="ingredient-form">
+    <h2 class="form-title">Modifier l'ingrédient</h2>
+    
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label for="editName" class="field-label">Nom de l'ingrédient</mat-label>
+        <input matInput id="editName" type="text" formControlName="name" required>
+        <mat-error *ngIf="editForm.get('name').hasError('required')">Le nom de l'ingrédient est requis</mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label for="editDescription" class="field-label">Description</mat-label>
+        <textarea matInput id="editDescription" formControlName="description" required></textarea>
+      </mat-form-field>
+    </div>
+    
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="editForm.invalid">Sauvegarder</button>
+    </div>
+  </form>
+  

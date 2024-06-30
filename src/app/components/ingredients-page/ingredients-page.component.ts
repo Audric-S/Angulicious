@@ -7,26 +7,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
+import { IngredientEditComponent } from "../ingredient-edit/ingredient-edit.component";
 
 @Component({
-  selector: 'app-ingredients-page',
-  standalone: true,
-  templateUrl: './ingredients-page.component.html',
-  styleUrls: ['./ingredients-page.component.scss'],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatLabel,
-    IngredientFormComponent
-  ]
+    selector: 'app-ingredients-page',
+    standalone: true,
+    templateUrl: './ingredients-page.component.html',
+    styleUrls: ['./ingredients-page.component.scss'],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatLabel,
+        IngredientFormComponent,
+        IngredientEditComponent
+    ]
 })
 export class IngredientsPageComponent implements OnInit {
   ingredients: Ingredient[] = [];
   updatedIngredient: Ingredient = { id: 0, name: '', description: '' };
   showIngredientForm: boolean = false;
+  showEditForm: boolean = false;
+  selectedIngredient!: Ingredient;
 
   constructor(private readonly ingredientsService: IngredientsService) { }
 
@@ -36,6 +40,13 @@ export class IngredientsPageComponent implements OnInit {
 
   toggleIngredientForm() {
     this.showIngredientForm = !this.showIngredientForm;
+    this.showEditForm = false;
+  }
+
+  openEditForm(ingredient: Ingredient): void {
+    this.selectedIngredient = { ...ingredient }; 
+    this.showEditForm = true; 
+    this.showIngredientForm = false;
   }
 
   loadIngredients(): void {
@@ -72,5 +83,18 @@ export class IngredientsPageComponent implements OnInit {
         console.error('Erreur lors de la mise à jour de l\'ingrédient:', error);
       }
     );
+  }
+
+  onIngredientAdded(addedIngredient: Ingredient): void {
+    this.showIngredientForm = false;
+    this.loadIngredients();
+  }
+
+  onIngredientSaved(editedIngredient: Ingredient): void {
+    this.showEditForm = false;
+    const index = this.ingredients.findIndex(ingredient => ingredient.id === editedIngredient.id);
+    if (index !== -1) {
+      this.ingredients[index] = editedIngredient;
+    }
   }
 }

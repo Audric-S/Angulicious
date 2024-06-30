@@ -2,7 +2,7 @@
   <img [src]="recipe?.imageUrl" alt="Product Image" class="product-image">
   <div class="product-details">
     <h2>{{ recipe?.name }}</h2>
-    <p>{{ recipe?.description }}</p>
+    <p>{{ recipe?.description!.length > 50 ? (recipe?.description | slice :0:50) + '...' : recipe?.description}}</p>
     <div class="btn">
       <a mat-flat-button color="primary" (click)="viewDetails()">
         Details

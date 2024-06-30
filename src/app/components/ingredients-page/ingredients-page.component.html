@@ -7,7 +7,7 @@
         <p>ID: {{ ingredient.id }}</p>
       </div>
       <div class="ingredient-actions">
-        <button mat-icon-button color="primary" class="custom-btn" (click)="updateIngredient(ingredient.id, updatedIngredient)">
+        <button mat-icon-button color="primary" class="custom-btn" (click)="openEditForm(ingredient)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" class="custom-btn" (click)="deleteIngredient(ingredient.id)">
@@ -18,12 +18,19 @@
   </div>
 
   <div class="sidebar">
-    <button mat-flat-button color="primary" class="custom-btn" (click)="toggleIngredientForm()">
-      {{ showIngredientForm ? 'Fermer' :  'Ajouter un ingrédient' }}
+    <button mat-flat-button color="primary" class="custom-btn" 
+            *ngIf="!showEditForm" 
+            (click)="toggleIngredientForm()">
+      {{ showIngredientForm ? 'Fermer' : 'Ajouter un ingrédient' }}
     </button>
   </div>
-
+  
   <div class="content" *ngIf="showIngredientForm">
-    <app-ingredient-form></app-ingredient-form>
+    <app-ingredient-form (newIngredientEvent)="onIngredientAdded($event)"></app-ingredient-form>
   </div>
+  
+  <div class="content" *ngIf="showEditForm && selectedIngredient">
+    <app-ingredient-edit [ingredient]="selectedIngredient" (saveIngredientEvent)="onIngredientSaved($event)"></app-ingredient-edit>
+  </div>
+  
 </div>

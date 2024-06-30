@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,6 +8,7 @@ import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { MatIconModule } from '@angular/material/icon';
 import { IngredientRecipe } from '../../models/ingredient-recipe.model';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ingredients-input',
