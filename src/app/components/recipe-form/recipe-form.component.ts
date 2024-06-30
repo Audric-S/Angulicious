@@ -34,6 +34,7 @@ export class RecipeFormComponent {
   displayedColumns: string[] = ['name', 'quantity', 'actions'];
   dataSource: MatTableDataSource<IngredientRecipe> = new MatTableDataSource<IngredientRecipe>();
   idForNewRecipe: string = uuid.v4();
+  defaultImageUrl: string = 'https://placehold.co/50x50?text=No+Image';
 
   newRecipe: Recipe = { id: '', name: '', imageUrl: '', description: '', ingredients: [] };
 
@@ -50,14 +51,16 @@ export class RecipeFormComponent {
   addRecipe() {
     this.newRecipe = {
       ...this.recipeForm.value,
+      imageUrl: this.newRecipe.imageUrl || this.defaultImageUrl,
       ingredients: this.ingredientsRecipe
     };
-    this.localService.addRecipe('recipes', this.newRecipe)
+    this.localService.addRecipe('recipes', this.newRecipe);
 
     this.addRecipeEvent.emit(this.newRecipe);
     this.recipeForm.reset();
     this.ingredientsRecipe = [];
     this.dataSource.data = this.ingredientsRecipe;
+    this.newRecipe.imageUrl = '';
   }
 
   addIngredient(event: IngredientRecipe) {
@@ -69,6 +72,17 @@ export class RecipeFormComponent {
     if (index >= 0 && index < this.ingredientsRecipe.length) {
       this.ingredientsRecipe.splice(index, 1);
       this.dataSource.data = [...this.ingredientsRecipe];
+    }
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.newRecipe.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
   }
 }
