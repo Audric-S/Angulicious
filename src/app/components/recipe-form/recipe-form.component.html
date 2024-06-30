@@ -43,10 +43,10 @@
   </div>
 
   <div class="form-field">
-    <input type="file" id="avatar-input-file" accept="image/*"/>
+    <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)"/>
   </div>
   
   <div class="button-container">
-    <button mat-raised-button color="primary" type="submit">Ajouter la Recette</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="recipeForm.invalid">Ajouter la Recette</button>
   </div>
 </form>
