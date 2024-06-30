@@ -12,12 +12,13 @@
     
     <div class="selected-recipes" *ngIf="!showForm">
     <mat-icon>shopping_cart</mat-icon>
-    <span>{{ itemCount }} items</span>
-      <h2>Selected Recipes</h2>
+    <div class="cart">
+      <h3>My order :</h3>
       <ul>
-        <li *ngFor="let recipe of currentRecipeOrder">
-            <img [src]="recipe?.imageUrl" alt="Product Image" class="product-image">
-          {{ recipe.name }}{{ recipe.name }} - {{ recipe.description }}
+        <li *ngFor="let order of currentRecipeOrder">
+          <img [src]="order.recipe.imageUrl" alt="Product Image" class="product-image">
+          {{ order.recipe.name }} - Quantité: {{ order.quantity }}
+          <button (click)="removeFromCart(order.recipe)">-</button>
         </li>
       </ul>
     </div>

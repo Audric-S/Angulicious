@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
 import { Subject } from 'rxjs';
+import { RecipeOrder } from '../models/recipe-order';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,35 @@ export class LocalService {
     const recipes = this.getParsedRecipes(key);
     recipes.push(recipe);
     this.saveRecipeData(key, recipes);
+  }
+
+  public getParsedRecipeOrders(key: string): RecipeOrder[] {
+    const items = this.getData(key);
+    if (items) {
+      try {
+        const parsedItems = JSON.parse(items);
+        if (Array.isArray(parsedItems)) {
+          return parsedItems as RecipeOrder[];
+        } else {
+          console.error('Parsed items are not an array');
+          return [];
+        }
+      } catch (error) {
+        console.error('Error parsing recipes from local storage:', error);
+        return [];
+      }
+    }
+    return [];
+  }
+
+  public saveRecipeOrderData(key: string, recipes: RecipeOrder[]): void {
+    const recipesJSON = JSON.stringify(recipes);
+    this.saveData(key, recipesJSON);
+  }
+
+  public addRecipeOrder(key: string, recipeOrder: RecipeOrder): void {
+    const recipes = this.getParsedRecipeOrders(key);
+    recipes.push(recipeOrder);
+    this.saveRecipeOrderData(key, recipes);
   }
 }

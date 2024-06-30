@@ -18,4 +18,22 @@
     object-fit: cover;
     border-radius: 100%;
   }
+
+  ul {
+    list-style-type: none;
+  }
   
+  
+  button {
+    margin-left: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  button:hover {
+    background-color: #d32f2f;
+  }
