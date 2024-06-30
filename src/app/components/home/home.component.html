@@ -1,8 +1,26 @@
 <div class="container">
     <div class="sidebar">
-      <app-recipes-list (EventaddRecipe)="toggleForm()" [events]="eventsSubject.asObservable()"></app-recipes-list>
+      <app-recipes-list 
+        (EventaddRecipe)="toggleForm()"
+        (EventaddRecipeToCart)="addToCart($event)" 
+        [events]="eventsSubject.asObservable()"
+      ></app-recipes-list>
     </div>
     <div class="content" *ngIf="showForm">
       <app-recipe-form (addRecipeEvent)="addRecipe()"></app-recipe-form>
     </div>
+    
+    <div class="selected-recipes" *ngIf="!showForm">
+    <mat-icon>shopping_cart</mat-icon>
+    <div class="cart">
+      <h3>My order :</h3>
+      <ul>
+        <li *ngFor="let order of currentRecipeOrder">
+          <img [src]="order.recipe.imageUrl" alt="Product Image" class="product-image">
+          {{ order.recipe.name }} - Quantité: {{ order.quantity }}
+          <button (click)="removeFromCart(order.recipe)">-</button>
+        </li>
+      </ul>
+    </div>
   </div>
+  

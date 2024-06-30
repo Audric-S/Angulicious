@@ -1,19 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { Recipe } from '../../models/recipe.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-recipe-preview',
   standalone: true,
   imports: [
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './recipe-preview.component.html',
   styleUrl: './recipe-preview.component.scss'
 })
 export class RecipePreviewComponent {
-  @Input() imageUrl: string | undefined;
-  @Input() name: string | undefined;
-  @Input() description: string = "";
+  @Input() recipe: Recipe | undefined;
+  @Output() orderClicked: EventEmitter<Recipe> = new EventEmitter<Recipe>();
+
+  addToCart() {
+    if (this.recipe) {
+      this.orderClicked.emit(this.recipe);
+    }
+  }
 }
