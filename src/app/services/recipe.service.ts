@@ -19,4 +19,14 @@ export class RecipeService {
   addData(item: any): void {
     this.recipes.push(item);
   }
+
+  getRecipes(): Recipe[] {
+    const recipesJson = localStorage.getItem('recipes');
+    return recipesJson ? JSON.parse(recipesJson) : [];
+  }
+
+  getRecipeById(id: string): Recipe | undefined {
+    const recipes = this.getRecipes();
+    return recipes.find(recipe => recipe.id === id);
+  }
 }

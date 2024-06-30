@@ -4,7 +4,9 @@
     <h2>{{ recipe?.name }}</h2>
     <p>{{ recipe?.description }}</p>
     <div class="btn">
-      <a mat-flat-button href="https://www.google.com/" target="_blank" color="primary">Details</a>
+      <a mat-flat-button color="primary" (click)="viewDetails()">
+        Details
+      </a>
       <a mat-flat-button color="primary" (click)="addToCart()">
         <mat-icon>shopping_cart</mat-icon>
         Commander

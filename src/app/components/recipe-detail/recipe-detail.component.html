@@ -1,0 +1,16 @@
+<a mat-flat-button color="primary" (click)="navigateBack()">Retour</a>
+
+<div class="recipe-card" *ngIf="recipe">
+    <h2>{{ recipe.name }}</h2>
+    <img [src]="recipe.imageUrl" alt="{{ recipe.name }}" class="recipe-image">
+    <p>{{ recipe.description }}</p>
+    
+    <h3>Ingredients:</h3>
+    <ul>
+      <li *ngFor="let ingredientRecipe of recipe.ingredients">
+        {{ ingredientRecipe.ingredient.name }} - Quantity: {{ ingredientRecipe.quantity }}
+      </li>
+    </ul>
+  
+  </div>
+  
