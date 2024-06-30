@@ -31,14 +31,19 @@ export class IngredientsService {
 
   addIngredient(ingredient: Ingredient): void{
     this.ingredients.push(ingredient);
+    this.sendIngredientApi(ingredient);
   }
 
-  sendIngredientApi(ingredient: Ingredient): Observable<Ingredient> {
+  private sendIngredientApi(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post<Ingredient>(this.apiUrl, ingredient);
   }
 
   deleteIngredient(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url);
+  }
+
+  updateIngredient(id: number, ingredient: Ingredient): Observable<Ingredient> {
+    return this.http.put<Ingredient>(`${this.apiUrl}/${id}`, ingredient);
   }
 }

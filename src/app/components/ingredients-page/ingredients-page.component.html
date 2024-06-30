@@ -1,1 +1,17 @@
-<p>ingredients-page works!</p>
+<div class="ingredient-list">
+    <div class="ingredient-card" *ngFor="let ingredient of ingredients">
+      <div class="ingredient-info">
+        <h2>{{ ingredient.name }}</h2>
+        <p>{{ ingredient.description }}</p>
+      </div>
+      <div class="ingredient-actions">
+        <button mat-icon-button color="primary" class="custom-btn" (click)="updateIngredient(ingredient.id, updatedIngredient)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" class="custom-btn" (click)="deleteIngredient(ingredient.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  
