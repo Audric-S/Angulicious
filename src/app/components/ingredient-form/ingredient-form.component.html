@@ -1,0 +1,22 @@
+<form [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
+    <h2 class="form-title">Ajouter un nouvel ingrédient</h2>
+    
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label for="name" class="field-label">Nom de l'ingrédient</mat-label>
+        <input matInput id="name" type="text" formControlName="name" required>
+      </mat-form-field>
+    </div>
+    
+    <div class="form-field">
+      <mat-form-field class="full-width">
+        <mat-label for="description" class="field-label">Description</mat-label>
+        <textarea matInput id="description" formControlName="description" required></textarea>
+      </mat-form-field>
+    </div>
+    
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="ingredientForm.invalid">Ajouter l'ingrédient</button>
+    </div>
+</form>
+  

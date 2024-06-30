@@ -35,7 +35,7 @@ export class RecipeFormComponent {
   displayedColumns: string[] = ['name', 'quantity', 'actions'];
   dataSource: MatTableDataSource<IngredientRecipe> = new MatTableDataSource<IngredientRecipe>();
   idForNewRecipe: string = uuid.v4();
-  defaultImageUrl: string = 'https://placehold.co/600x400?text=Hello+World';
+  defaultImageUrl: string = 'https://placehold.co/50x50?text=No+Image';
 
   newRecipe: Recipe = { id: '', name: '', imageUrl: '', description: '', ingredients: [] };
 

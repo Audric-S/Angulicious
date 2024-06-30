@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { IngredientsService } from '../../services/ingredients.service';
@@ -18,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     CommonModule,
     MatInputModule,
-    MatFormFieldModule,
     FormsModule,
     MatIconModule,
     ReactiveFormsModule
@@ -29,30 +28,51 @@ import { ReactiveFormsModule } from '@angular/forms';
     IngredientsService
   ]
 })
-export class IngredientsInputComponent {
+export class IngredientsInputComponent implements OnInit {
   @Output() addIngredientEvent = new EventEmitter<IngredientRecipe>();
   options: Ingredient[] = [];
   
-  constructor(
-    protected ingredientService: IngredientsService,
-  ){}
-
-  newIngredient: IngredientRecipe = { id: 0, ingredient: {id: 0, name: '', description:''}, quantity: 0 }
+  newIngredient: IngredientRecipe = { id: 0, ingredient: {id: 0, name: '', description:''}, quantity: 0 };
 
   ingredientForm: FormGroup = new FormGroup({
     quantity: new FormControl(this.newIngredient.quantity, [Validators.required, Validators.min(1)]),
     ingredient: new FormControl(this.newIngredient.ingredient, Validators.required),
   });
 
-  ngOnInit(){
-    this.options = this.ingredientService.getAll();
+  constructor(protected ingredientService: IngredientsService) {}
+
+  ngOnInit() {
+    this.loadOptions();
   }
   
-  addIngredient(): void{
+  loadOptions() {
+    this.ingredientService.getAll().subscribe(
+      (ingredients: Ingredient[]) => {
+        this.options = ingredients;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des ingrédients:', error);
+      }
+    );
+  }
+
+  addIngredient(): void {
     if (this.ingredientForm.valid) {
-      this.newIngredient = this.ingredientForm.value;
-      this.addIngredientEvent.emit(this.newIngredient);
-      this.ingredientForm.reset();
+      const ingredientValue = this.ingredientForm.value.ingredient;
+      const quantityValue = this.ingredientForm.value.quantity;
+
+      const selectedIngredient = this.options.find(option => option.id === ingredientValue.id);
+      if (selectedIngredient) {
+        this.newIngredient = {
+          id: this.newIngredient.id,
+          ingredient: selectedIngredient,
+          quantity: quantityValue
+        };
+        this.addIngredientEvent.emit(this.newIngredient);
+        this.ingredientForm.reset();
+      } else {
+        console.error('Ingrédient sélectionné non trouvé dans les options.');
+      }
     }
   }
 }

@@ -1,25 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../../models/ingredient.model';
 import { IngredientsService } from '../../services/ingredients.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
 
 @Component({
   selector: 'app-ingredients-page',
   standalone: true,
+  templateUrl: './ingredients-page.component.html',
+  styleUrls: ['./ingredients-page.component.scss'],
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
-  ],
-  templateUrl: './ingredients-page.component.html',
-  styleUrl: './ingredients-page.component.scss'
+    MatButtonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatLabel,
+    IngredientFormComponent
+  ]
 })
-export class IngredientsPageComponent {
-
+export class IngredientsPageComponent implements OnInit {
   ingredients: Ingredient[] = [];
   updatedIngredient: Ingredient = { id: 0, name: '', description: '' };
+  showIngredientForm: boolean = false;
 
   constructor(private readonly ingredientsService: IngredientsService) { }
 
@@ -27,14 +34,24 @@ export class IngredientsPageComponent {
     this.loadIngredients();
   }
 
+  toggleIngredientForm() {
+    this.showIngredientForm = !this.showIngredientForm;
+  }
+
   loadIngredients(): void {
-    this.ingredients = this.ingredientsService.getAll();
+    this.ingredientsService.getAll().subscribe(
+      (ingredients) => {
+        this.ingredients = ingredients;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des ingrédients:', error);
+      }
+    );
   }
 
   deleteIngredient(id: number): void {
     this.ingredientsService.deleteIngredient(id).subscribe(
       () => {
-        // Filtrer l'ingrédient supprimé de la liste
         this.ingredients = this.ingredients.filter(ingredient => ingredient.id !== id);
       },
       (error) => {
@@ -46,7 +63,6 @@ export class IngredientsPageComponent {
   updateIngredient(id: number, updatedIngredient: Ingredient): void {
     this.ingredientsService.updateIngredient(id, updatedIngredient).subscribe(
       (ingredient) => {
-        // Mettre à jour l'ingrédient dans la liste
         const index = this.ingredients.findIndex(i => i.id === id);
         if (index !== -1) {
           this.ingredients[index] = ingredient;
