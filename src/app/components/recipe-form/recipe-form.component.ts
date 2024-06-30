@@ -65,7 +65,16 @@ export class RecipeFormComponent {
   }
 
   addIngredient(event: IngredientRecipe) {
-    this.ingredientsRecipe.push(event);
+    const existingIngredientIndex = this.ingredientsRecipe.findIndex(
+      ing => ing.ingredient.id === event.ingredient.id
+    );
+
+    if (existingIngredientIndex !== -1) {
+      this.ingredientsRecipe[existingIngredientIndex].quantity += event.quantity;
+    } else {
+      this.ingredientsRecipe.push(event);
+    }
+
     this.dataSource.data = [...this.ingredientsRecipe];
     this.recipeForm.updateValueAndValidity();
   }
