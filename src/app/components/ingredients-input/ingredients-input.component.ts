@@ -38,7 +38,7 @@ export class IngredientsInputComponent {
     protected ingredientService: IngredientsService,
   ){}
 
-  newIngredient: IngredientRecipe = { id: 0, ingredient: {id: 0, name: ''}, quantity: 0 }
+  newIngredient: IngredientRecipe = { id: 0, ingredient: {id: 0, name: '', description:''}, quantity: 0 }
 
   ingredientForm: FormGroup = new FormGroup({
     quantity: new FormControl(this.newIngredient.quantity, Validators.required),
